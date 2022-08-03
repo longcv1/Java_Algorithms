@@ -2,14 +2,19 @@ package bfs;
 
 import java.util.ArrayList;
 
-/*******************
- * enqueue any starting vertex
- * while queue is not empty
- * 		p = dequeue()
- * 		if p is unvisited
- * 			mark it visited
- * 			enqueue all adjacent
- * 			unvisited vertices of p
+/*************************************
+ * BFS(vertex)
+ *  	Queue queue
+ *  	vertex set visited true
+ * 		queue.enqueue(vertex)
+ * 
+ * 		while queue is not empty
+ * 			actual = queue.dequeue()
+ * 			for v in actual neighbors
+ * 				if v is not visited
+ * 					v set visited true
+ * 					queue.enqueue(v)
+ * 					
  * 
  * */
 
