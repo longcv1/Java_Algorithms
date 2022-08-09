@@ -28,6 +28,4 @@ public class Edge {
 	public void setTargetVertex(VertexDijstra targetVertex) {
 		this.targetVertex = targetVertex;
 	}
-	
-	
 }
