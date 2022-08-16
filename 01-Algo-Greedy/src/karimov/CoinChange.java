@@ -19,8 +19,6 @@ class CoinChangeAlgo{
 	}
 }
 
-
-
 public class CoinChange {
 	public static void main(String[] args) {
 		int[] coins = {1,2,5,10,20,50,1000};
