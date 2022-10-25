@@ -62,6 +62,6 @@ public class VertexG implements Comparable<VertexG>{
 	}
 	@Override
 	public String toString() {
-		return this.name + "-" + this.distance;
+		return this.name;
 	}
 }
