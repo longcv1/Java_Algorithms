@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-class VertexScc {
+class Vertex_K {
 	private int id;
 	private String name;
 	private boolean visited;
-	private List<VertexScc> adjacencyList;
+	private List<Vertex_K> adjacencyList;
 	private int componentId;
 
-	public VertexScc(int id, String name) {
+	public Vertex_K(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -23,7 +23,7 @@ class VertexScc {
 		return this.name;
 	}
 
-	public void addNeighbor(VertexScc vertex) {
+	public void addNeighbor(Vertex_K vertex) {
 		this.adjacencyList.add(vertex);
 	}
 
@@ -51,17 +51,17 @@ class VertexScc {
 		this.visited = visited;
 	}
 
-	public List<VertexScc> getNeighbor() {
+	public List<Vertex_K> getNeighbor() {
 		return this.adjacencyList;
 	}
 }
 
 class EdgeScc {
 	private double weight;
-	private VertexScc startVertex;
-	private VertexScc targetVertex;
+	private Vertex_K startVertex;
+	private Vertex_K targetVertex;
 
-	public EdgeScc(double weight, VertexScc startVertex, VertexScc targetVertex) {
+	public EdgeScc(double weight, Vertex_K startVertex, Vertex_K targetVertex) {
 		super();
 		this.weight = weight;
 		this.startVertex = startVertex;
@@ -76,28 +76,28 @@ class EdgeScc {
 		this.weight = weight;
 	}
 
-	public VertexScc getStartVertex() {
+	public Vertex_K getStartVertex() {
 		return startVertex;
 	}
 
-	public void setStartVertex(VertexScc startVertex) {
+	public void setStartVertex(Vertex_K startVertex) {
 		this.startVertex = startVertex;
 	}
 
-	public VertexScc getTargetVertex() {
+	public Vertex_K getTargetVertex() {
 		return targetVertex;
 	}
 
-	public void setTargetVertex(VertexScc targetVertex) {
+	public void setTargetVertex(Vertex_K targetVertex) {
 		this.targetVertex = targetVertex;
 	}
 }
 
 class Graph {
-	private List<VertexScc> vertexList;
+	private List<Vertex_K> vertexList;
 	private List<EdgeScc> edgeList;
 
-	public Graph(List<VertexScc> vertexList, List<EdgeScc> edgeList) {
+	public Graph(List<Vertex_K> vertexList, List<EdgeScc> edgeList) {
 		super();
 		this.vertexList = vertexList;
 		this.edgeList = edgeList;
@@ -107,11 +107,11 @@ class Graph {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<VertexScc> getVertexList() {
+	public List<Vertex_K> getVertexList() {
 		return vertexList;
 	}
 
-	public void setVertexList(List<VertexScc> vertexList) {
+	public void setVertexList(List<Vertex_K> vertexList) {
 		this.vertexList = vertexList;
 	}
 
@@ -125,10 +125,10 @@ class Graph {
 
 	public Graph getTransposeGraph() {
 		Graph transposeGraph = new Graph();
-		List<VertexScc> transposeList = new ArrayList<>();
+		List<Vertex_K> transposeList = new ArrayList<>();
 
 		// transposed G'(V,E) contains the exact same vertex
-		for (VertexScc v : this.vertexList) {
+		for (Vertex_K v : this.vertexList) {
 			transposeList.add(v);
 		}
 
@@ -143,19 +143,19 @@ class Graph {
 }
 
 class DfsOrder {
-	private Stack<VertexScc> stack = new Stack<>();
+	private Stack<Vertex_K> stack = new Stack<>();
 
 	public DfsOrder(Graph graph) {
-		for (VertexScc v : graph.getVertexList()) {
+		for (Vertex_K v : graph.getVertexList()) {
 			if (!v.isVisited()) {
 				dfs(v);
 			}
 		}
 	}
 
-	private void dfs(VertexScc vertex) {
+	private void dfs(Vertex_K vertex) {
 		vertex.setVisited(true);
-		for (VertexScc v : vertex.getNeighbor()) {
+		for (Vertex_K v : vertex.getNeighbor()) {
 			if (!v.isVisited())
 				dfs(v);
 		}
@@ -163,7 +163,7 @@ class DfsOrder {
 		stack.push(vertex);
 	}
 
-	public Stack<VertexScc> getStack() {
+	public Stack<Vertex_K> getStack() {
 		return this.stack;
 	}
 }
@@ -182,7 +182,7 @@ class KosarajuAlgo {
 		marked = new boolean[graph.getVertexList().size()];
 
 		// we do another DFS on the original G(V,E) graph
-		for (VertexScc v : dfs.getStack()) {
+		for (Vertex_K v : dfs.getStack()) {
 			if (!marked[v.getId()]) {
 				dfs(v);
 				count++;
@@ -190,11 +190,11 @@ class KosarajuAlgo {
 		}
 	}
 
-	private void dfs(VertexScc vertex) {
+	private void dfs(Vertex_K vertex) {
 		marked[vertex.getId()] = true;
 		vertex.setComponentId(count);
 
-		for (VertexScc v : vertex.getNeighbor())
+		for (Vertex_K v : vertex.getNeighbor())
 			if (!marked[v.getId()])
 				dfs(v);
 	}
@@ -207,16 +207,16 @@ class KosarajuAlgo {
 public class Kosaraju {
 
 	public static void main(String[] args) {
-		List<VertexScc> vertexList = new ArrayList<>();
+		List<Vertex_K> vertexList = new ArrayList<>();
 
-		vertexList.add(new VertexScc(0, "A"));
-		vertexList.add(new VertexScc(1, "B"));
-		vertexList.add(new VertexScc(2, "C"));
-		vertexList.add(new VertexScc(3, "D"));
-		vertexList.add(new VertexScc(4, "E"));
-		vertexList.add(new VertexScc(5, "F"));
-		vertexList.add(new VertexScc(6, "G"));
-		vertexList.add(new VertexScc(7, "H"));
+		vertexList.add(new Vertex_K(0, "A"));
+		vertexList.add(new Vertex_K(1, "B"));
+		vertexList.add(new Vertex_K(2, "C"));
+		vertexList.add(new Vertex_K(3, "D"));
+		vertexList.add(new Vertex_K(4, "E"));
+		vertexList.add(new Vertex_K(5, "F"));
+		vertexList.add(new Vertex_K(6, "G"));
+		vertexList.add(new Vertex_K(7, "H"));
 
 		List<EdgeScc> edgeList = new ArrayList<EdgeScc>();
 
@@ -246,7 +246,7 @@ public class Kosaraju {
 		KosarajuAlgo algorithm = new KosarajuAlgo(graph);
 		System.out.println(algorithm.getCount());
 
-		for (VertexScc vertex : vertexList)
+		for (Vertex_K vertex : vertexList)
 			System.out.println(vertex + " - " + vertex.getComponentId());
 
 	}
